@@ -1,0 +1,60 @@
+<div class="main">
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>{{isEdit ? 'Edit Student Details' : 'Fill Student Details'}}</mat-card-title>
+        </mat-card-header>
+        <div class="form">
+            <form [formGroup]="studentForm" (ngSubmit)="submitForm()">
+                <mat-form-field class="form-element">
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="Enter first name" formControlName="firstName">
+                    <mat-error *ngIf="formControl.firstName?.errors?.required">This field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-element">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput placeholder="Enter last name" formControlName="lastName">
+                    <mat-error *ngIf="formControl.lastName?.errors?.required">This field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-element">
+                    <mat-select placeholder="Gender" formControlName="gender">
+                        <mat-option value="Male">Male</mat-option>
+                        <mat-option value="Female">Female</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formControl.gender?.errors?.required">This field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dob">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="formControl.dob?.errors?.required">This field is required
+                    </mat-error>
+                    <mat-error *ngIf="formControl.dob?.errors?.matDatepickerParse">Invalid date
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-element">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Enter email id" formControlName="email">
+                    <mat-error *ngIf="formControl.email?.errors?.required">This field is required
+                    </mat-error>
+                    <mat-error *ngIf="formControl.email?.errors?.pattern">Use valid email address.
+                    </mat-error>
+
+                </mat-form-field>
+                <mat-form-field class="form-element">
+                    <mat-label>Contact Number</mat-label>
+                    <input matInput placeholder="Enter contact number" formControlName="contact"
+                        (keypress)="numberOnly($event)" maxlength="10">
+                    <mat-error *ngIf="formControl.contact?.errors?.required">This field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-card-actions>
+                    <button class="button" mat-raised-button color="primary">{{isEdit ? 'Update' : 'Submit'}}</button>
+                </mat-card-actions>
+            </form>
+        </div>
+
+    </mat-card>
+</div>
