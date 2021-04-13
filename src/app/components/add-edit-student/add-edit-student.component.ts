@@ -30,7 +30,6 @@ export class AddEditStudentComponent implements OnInit {
     });
 
     this.acRoute.params.subscribe(result => {
-      console.log('param', result);
       if (result.index) {
         const index = +result.index;
         this.editIndex = index;
@@ -50,7 +49,6 @@ export class AddEditStudentComponent implements OnInit {
   }
 
   submitForm() {
-    console.log('form', this.studentForm);
 
     if (this.studentForm.invalid) {
       return;

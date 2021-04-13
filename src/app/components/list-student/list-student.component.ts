@@ -35,7 +35,6 @@ export class ListStudentComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
-    console.log('data source', this.dataSource);
 
   }
 
@@ -52,14 +51,11 @@ export class ListStudentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('result', result);
 
       if (result) {
-        console.log('The dialog was closed');
         this.common.deleteStudent(index, this.ELEMENT_DATA);
         this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         this.dataSource._updateChangeSubscription();
-        console.log('dara', this.ELEMENT_DATA);
 
         this.common.openSnackBar('Student deleted Successfully!');
       }
